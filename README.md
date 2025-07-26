@@ -36,7 +36,7 @@ Get started in just a few steps! Follow this guide to set up the project locally
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/shakilahammed055/chatbot_using_rag
+git clone https://github.com/shakilahammed055/chatbot_using_rag.git
 cd chatbot_using_rag
 ```
 
