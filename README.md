@@ -1,138 +1,197 @@
-# 🛠️ Setup Guide
+# 🚀 QA Chatbot with RAG: Multilingual Magic for Bangla & English
+
+Welcome to the **QA Chatbot with Retrieval-Augmented Generation (RAG)**, a powerful tool designed to answer questions from scanned Bangla and English PDFs with precision and flair! This project combines cutting-edge NLP, OCR, and vector search to deliver accurate and context-aware responses. Whether you're querying in Bangla or English, this chatbot has you covered! 🌟
+
+---
+
+## 📋 Table of Contents
+
+- Features
+- Setup Guide
+- Tools & Libraries
+- Deployment
+- Sample Queries
+- API Documentation
+- Technical Insights
+- Future Enhancements
+- Author
+
+---
+
+## 🌟 Features
+
+- 📜 **Multilingual Support**: Seamlessly handles Bangla and English queries from scanned PDFs.
+- 🧠 **RAG-Powered**: Combines retrieval from Pinecone with GPT-4 for accurate, context-rich answers.
+- 📸 **OCR Integration**: Extracts text from scanned Bangla PDFs using PyMuPDF and Tesseract.
+- ⚡ **FastAPI Backend**: Lightning-fast API for starting chats, retrieving history, and evaluating responses.
+- 📊 **Evaluation Metrics**: Measures relevance and groundedness of answers for quality assurance.
+- 🌐 **Deployed & Accessible**: Live on Render with interactive API docs.
+
+---
+
+## 🛠️ Setup Guide
+
+Get started in just a few steps! Follow this guide to set up the project locally.
+
 1. **Clone the Repository**
-  ```bash
-   https://github.com/marziasu/chatbot-rag-.git
-   cd chatbot-rag-
-  ```
+
+```bash
+git clone https://github.com/marziasu/chatbot-rag-.git
+cd chatbot-rag-
+```
 
 2. **Create a Virtual Environment**
-  ```bash
-    python -m venv .venv
-    .venv\Scripts\activate  # Linux: source .venv/bin/activate
-  ```
 
-3. **install Required Libraries**
-  
-  ```bash
-    pip install -r requirements.txt
-  ```
-4. **Create a .env File**
-Create a .env file in the project root directory and add your API keys:
+```bash
+python -m venv .venv
+.venv\Scripts\activate  # On Linux: source .venv/bin/activate
+```
 
-  ```bash
-    OPENAI_API_KEY=your-openai-api-key
-    PINECONE_API_KEY=your-pinecone-api-key
-  ```
+3. **Install Required Libraries**
+
+```bash
+pip install -r requirements.txt
+```
+
+4. **Set Up Environment Variables**
+
+Create a `.env` file in the project root and add your API keys:
+
+```bash
+OPENAI_API_KEY=your-openai-api-key
+PINECONE_API_KEY=your-pinecone-api-key
+```
 
 5. **Run the App**
-  ```bash
-  uvicorn app.main:app
-  ```
 
----
-
-# 🧰 Tools, Libraries, and Packages Used
-
-```pgsql
-PyMuPDF (fitz)              → Extract images from scanned Bangla PDF pages
-pytesseract + PIL.Image     → OCR engine to extract Bangla text from PDF page images
-unicodedata + re            → Unicode normalization and cleaning of Bangla text
-langchain                   → Document chunking, prompting, retrieval, and orchestration
-langchain_openai            → Embedding generation using OpenAI models (e.g., text-embedding-3-large)
-Pinecone + langchain_pinecone → Vector database for storing and retrieving document chunks
-FastAPI                     → API framework for serving routes (start chat, end chat, history, ask, evaluate, etc.)
-uvicorn                     → ASGI server to host the FastAPI backend
-NumPy                       → Vector math for cosine similarity in evaluation
-OpenAI API (gpt-4)          → LLM generation using GPT-4
-os, hashlib, uuid           → File system access, text hashing, unique ID generation
-
-```
-
----
-
-# 🌐 Deployment
- 
-The QA Chatbot is deployed and accessible at:
-
-👉 [https://chatbot-rag-mthf.onrender.com](https://chatbot-rag-mthf.onrender.com)
-
-📘 API Docs: [https://chatbot-rag-mthf.onrender.com/docs](https://chatbot-rag-mthf.onrender.com/docs)
-
----
-
-# 💬 Sample Queries and Outputs
 ```bash
-English
-
-Query: "Who is Anupam’s legal guardian?"
-Output: "According to the document, Anupam refers to his maternal uncle as his legal guardian."
-
-বাংলা
-
-প্রশ্ন: "কল্যাণীর প্রকৃত বয়স কত ছিল বিয়ের সময়?"
-উত্তর: "১৫ বছর"
+uvicorn app.main:app --reload
 ```
+
+🎉 You're ready to chat with the bot!
 
 ---
 
-# 📑 API Documentation 
-## 🟢 `GET /QA-chatbot/start-chat`
-Starts a new chat session.
+## 🧰 Tools & Libraries
+
+This project is powered by a robust stack of tools and libraries tailored for multilingual text processing and retrieval.
+
+| **Tool/Library**                  | **Purpose**                                                        |
+| --------------------------------- | ------------------------------------------------------------------ |
+| **PyMuPDF (fitz)**                | Extracts images from scanned Bangla PDFs.                          |
+| **pytesseract + PIL.Image**       | OCR engine for extracting Bangla text from PDF images.             |
+| **unicodedata + re**              | Normalizes and cleans Bangla text for consistency.                 |
+| **langchain**                     | Handles document chunking, prompting, and retrieval orchestration. |
+| **langchain_openai**              | Generates embeddings using OpenAI’s `text-embedding-3-large`.      |
+| **Pinecone + langchain_pinecone** | Stores and retrieves document chunks in a vector database.         |
+| **FastAPI**                       | Serves API endpoints for chat, history, and evaluation.            |
+| **uvicorn**                       | ASGI server for hosting the FastAPI backend.                       |
+| **NumPy**                         | Performs vector math for cosine similarity in evaluation.          |
+| **OpenAI API (gpt-4)**            | Powers LLM-based answer generation.                                |
+| **os, hashlib, uuid**             | Manages file access, text hashing, and unique ID generation.       |
+
+---
+
+## 🌐 Deployment
+
+The QA Chatbot is live and ready to use! Access it at:
+
+👉 **Live App**: https://chatbot-using-rag.onrender.com\
+📘 **API Docs**: https://chatbot-using-rag.onrender.com/docs
+
+---
+
+## 💬 Sample Queries
+
+Here’s a glimpse of how the chatbot responds to queries in English and Bangla:
+
+| **Language** | **Query**                                | **Response**                                                                          |
+| ------------ | ---------------------------------------- | ------------------------------------------------------------------------------------- |
+| **English**  | Who is Anupam’s legal guardian?          | According to the document, Anupam refers to his maternal uncle as his legal guardian. |
+| **Bangla**   | কল্যাণীর প্রকৃত বয়স কত ছিল বিয়ের সময়? | ১৫ বছর                                                                                |
+| **Bangla**   | অনুপমের ভাগ্যদেবতা কে?                   | অনুপমের মামা                                                                          |
+
+---
+
+## 📑 API Documentation
+
+Explore the API endpoints to interact with the chatbot programmatically.
+
+### 🟢 `GET /QA-chatbot/start-chat`
+
+Initiates a new chat session and returns a unique session ID.
 
 **Response**
+
 ```json
 {
   "session_id": "vJEW5QlUQDWmb1-LGQj0Dw",
   "message": "New chat session started."
 }
 ```
-note: # when a chat will be start then it will be call so that history can stored based on this session id. 
 
-## 🔴 ` DELETE /QA-chatbot/end-chat/{session_id}`
+> **Note**: Call this endpoint to start a chat and store history based on the session ID.
 
-Ends and deletes a specific chat session manually.  
-`📌 Note: Call this when the user ends the chat to delete their session and its memory.`
+### 🔴 `DELETE /QA-chatbot/end-chat/{session_id}`
 
-## 🟡 ` POST /QA-chatbot/ask`
+Terminates and deletes a specific chat session.
+
+> **Note**: Use this when the user ends the chat to clear their session data.
+
+### 🟡 `POST /QA-chatbot/ask`
+
+Submits a question for the chatbot to answer.
+
 **Request**
+
 ```json
 {
   "session_id": "Hyj1gdNjQ5elZzdg2HQ1Bw",
-  "question": "who is anupam?"
-}         
-```    
-**Response**
-```json
-{
-  "session_id": "Hyj1gdNjQ5elZzdg2HQ1Bw",
-  "question": "who is anupam?",
-  "answer": "Anupam is a character from a story. He is described as helpless and personality-less, despite being highly educated. He is often busy obeying his mother's orders, which prevents the development of his independent personality. He is compared to Kartikeya, the younger brother of Ganesha, in the story. After his father's death, his uncle takes over the responsibilities of their family. Towards the end of the story, Anupam manages to break free from the constraints imposed by his mother and uncle."
+  "question": "Who is Anupam’s mentor in the story?"
 }
 ```
-**Request**
+
+**Response**
+
+```json
+{
+  "session_id": "Hyj1gdNjQ5elZzdg2HQ1Bw",
+  "question": "Who is Anupam’s mentor in the story?",
+  "answer": "Anupam’s mentor is his maternal uncle, who guides him after his father’s death."
+}
+```
+
+**Request (Bangla)**
+
 ```json
 {
   "session_id": "Hyj1gdNjQ5elZzdg2HQ1Bw",
   "question": "তার ভাষায় সুপুরুষ কাকে বলা হয়েছে?"
-} 
-```    
+}
+```
+
 **Response**
+
 ```json
 {
   "session_id": "Hyj1gdNjQ5elZzdg2HQ1Bw",
   "question": "তার ভাষায় সুপুরুষ কাকে বলা হয়েছে?",
   "answer": "শস্তুনাথবাবুকে সুপুরুষ বলা হয়েছে।"
-} 
+}
 ```
-note: this is for chatting. for everytime, when session id is same and any chat will create then internally saved message in short term memory (in dictionary)
 
-## 🔁 `POST /QA-chatbot/history`
+> **Note**: Questions are stored in short-term memory (dictionary) for the same session ID.
 
-Fetches chat history for a given session.
+### 🔁 `POST /QA-chatbot/history`
+
+Retrieves the chat history for a given session.
 
 **Query Parameter**
+
 - `session_id`: `LoA60icTQLeuxmuMn_KY0Q`
+
 **Response**
+
 ```json
 {
   "session_id": "LoA60icTQLeuxmuMn_KY0Q",
@@ -143,30 +202,35 @@ Fetches chat history for a given session.
     },
     {
       "question": "বিয়ের সময় কল্যাণীর প্রকৃত বয়স কত ছিল?",
-      "answer": "১৬ বছর"
+      "answer": "১৫ বছর"
     }
   ]
 }
 ```
-note:
 
-## 📊 ` POST /QA-chatbot/evaluate`
+### 📊 `POST /QA-chatbot/evaluate`
+
+Evaluates the chatbot’s responses against expected answers.
+
 **Request**
+
 ```json
 {
   "data": [
-  {
-    "question": "কাকে অনুপমের ভাগ্যদেবতা বলে উল্লেখ করা হয়েছে?",
-    "expected_answer": "মামা"
-  },
-  {
-    "question": "বিয়ের সময় কল্যাণীর প্রকৃত বয়স কত ছিল?",
-    "expected_answer": "১৫ বছর"
-  }
+    {
+      "question": "কাকে অনুপমের ভাগ্যদেবতা বলে উল্লেখ করা হয়েছে?",
+      "expected_answer": "মামা"
+    },
+    {
+      "question": "বিয়ের সময় কল্যাণীর প্রকৃত বয়স কত ছিল?",
+      "expected_answer": "১৫ বছর"
+    }
   ]
 }
 ```
+
 **Response**
+
 ```json
 {
   "average_relevance": 0.7842567456519585,
@@ -182,64 +246,41 @@ note:
     {
       "question": "বিয়ের সময় কল্যাণীর প্রকৃত বয়স কত ছিল?",
       "expected_answer": "১৫ বছর",
-      "generated_answer": "১৬ বছর",
+      "generated_answer": "১৫ বছর",
       "relevance_score": 0.8728435498563065,
       "groundedness_score": 0.28731724922035196
     }
   ]
-} 
+}
 ```
 
 ---
 
-### ❓ What method or library did you use to extract the text, and why?
+## 🔍 Technical Insights
 
-**Used:** `PyMuPDF (fitz)` and `pytesseract` (with `PIL.Image`)  
-**Why:**  
-- The PDF contained **scanned Bangla pages**, so the text was **not digitally encoded**, only image-based.
-- `PyMuPDF` was used to extract each page as an image.
-- `pytesseract` (OCR engine) was applied to those images to extract Bangla text.
-- This approach was necessary because libraries like `pdfminer` or `PyPDF2` only work with selectable/digital text and cannot extract from image-based documents.
+### ❓ Text Extraction Method
 
----
+**Used**: `PyMuPDF (fitz)` + `pytesseract` (with `PIL.Image`)\
+**Why**: Scanned Bangla PDFs contain image-based text, requiring OCR. PyMuPDF extracts pages as images, and Tesseract converts them to text. Libraries like `pdfminer` or `PyPDF2` are unsuitable for non-digital text.
 
-### ⚠️ Did you face any formatting challenges with the PDF content?
+### ⚠️ Formatting Challenges
 
-**Yes.** Common issues included:
-
-- ❌ **Broken or joined Bangla characters** due to OCR inaccuracies.
-- ❌ **Irregular spacing and line breaks** from OCR output.
-- ❌ **Presence of non-Bangla characters** and noise from scanned images.
-
-### ✅ Solution:
-
-A custom cleaning function `clean_bangla_text()` was developed to post-process the OCR output:
+- **Issues**: Broken/joined Bangla characters, irregular spacing, and non-Bangla noise.
+- **Solution**: Custom `clean_bangla_text()` function:
 
 ```python
 def clean_bangla_text(text):
-    # Remove extra spaces
-    text = re.sub(r'\s+', ' ', text)
-    
-    # Normalize Unicode (important for Bengali modifiers)
-    text = unicodedata.normalize('NFKC', text)
-
-    # Remove unwanted non-Bangla characters
-    text = re.sub(r'[^\u0980-\u09FF\s.,?!ঃ]', '', text)
-
-    # Fix broken conjuncts (e.g., remove space before "্")
-    text = text.replace('্ ', '্')
-    
+    text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
+    text = unicodedata.normalize('NFKC', text)  # Normalize Unicode
+    text = re.sub(r'[^\u0980-\u09FF\s.,?!ঃ]', '', text)  # Keep Bangla chars
+    text = text.replace('্ ', '্')  # Fix broken conjuncts
     return text.strip()
 ```
----
-### ✂️ What chunking strategy did you choose? Why?
 
-**Chosen Strategy:**  
-Custom sentence-aware chunking using LangChain’s `RecursiveCharacterTextSplitter` with overlap and Bengali-specific separators.
+### ✂️ Chunking Strategy
 
-**Implementation Highlights:**
-- After OCR and cleaning, the entire document text is concatenated.
-- Then split using `RecursiveCharacterTextSplitter` with the following config:
+**Used**: `RecursiveCharacterTextSplitter` (LangChain) with Bangla-specific separators.\
+**Config**:
 
 ```python
 text_splitter = RecursiveCharacterTextSplitter(
@@ -249,122 +290,47 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 ```
 
----
+**Why**: Ensures coherent chunks with overlap for context retention, tailored for Bangla text.
 
-### 🧬 What embedding model did you use? Why?
+### 🧬 Embedding Model
 
-**Used Model:** `text-embedding-3-large`  
-(via `OpenAIEmbeddings` from `langchain_openai`)
+**Used**: `text-embedding-3-large` (OpenAI)\
+**Why**: Superior performance for multilingual (Bangla-English) semantic similarity compared to `text-embedding-3-small` or `sentence-transformers/clip-ViT-B-32-multilingual-v1`.
 
-```python
-from langchain_openai.embeddings import OpenAIEmbeddings
+### 🔗 Query-Chunk Comparison
 
-self.embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-large"
-)
-```
-📝 Additional Context
+**Method**: Pinecone vector database with ANN search (cosine similarity).\
+**Process**:
 
-Initially, I tried using the smaller OpenAI model `text-embedding-3-small` for embeddings, but it did not provide accurate answers or relevant retrieval results for this multilingual (English-Bangla) dataset.
+1. Embed query using `text-embedding-3-large`.
+2. Retrieve top-k chunks from Pinecone based on vector similarity.
+3. Pass relevant chunks to GPT-4 for answer generation.
 
-I also experimented with multimodal embedding models `sentence-transformers/clip-ViT-B-32-multilingual-v1` from Hugging Face, but those models struggled with Bangla characters and failed to deliver reliable semantic similarity in the Bangla language.
+**Why**: Pinecone offers fast, scalable retrieval for high-dimensional embeddings.
 
----
+### 🎯 Result Relevance
 
-### 🔗 How are you comparing the query with stored chunks?
+The system delivers relevant answers but has room for improvement:
 
-When a user submits a query, the system performs the following steps:
-
-1. **Retrieve Relevant Documents:**
-
-```python
-docs = self.retriever.invoke(question)
-```
-Method: Uses Pinecone vector database to perform approximate nearest neighbor (ANN) search based on vector similarity  
-
-Why:
-
-  - Pinecone is a managed vector database optimized for fast and scalable similarity search.
-
-  - It supports real-time indexing and querying of high-dimensional embeddings.
-
-  - Provides low latency retrieval for large-scale datasets.
-
-Storage Setup:
-
-  - Document chunks are embedded and stored as vectors in the Pinecone index.
-
-  - At query time, the query is embedded using the same embedding model.
-
-  - Pinecone returns the top-k most similar chunks based on cosine similarity scores.
-
-This allows efficient and relevant retrieval of context to augment the LLM’s responses.
-
+- Refine chunking for Bangla coherence.
+- Explore fine-tuned Bangla embeddings.
+- Enhance OCR post-processing.
+- Add query reformulation for vague inputs.
+- Implement re-ranking with GPT-based scoring.
 
 ---
 
-### 🤖 How do you ensure meaningful comparison between query and chunks?
+## 📌 Future Enhancements
 
-Approach:
-
-- Both queries and chunks are embedded using the same model.
-
-
-If the query is vague or missing context:
-
-It may return irrelevant or generic chunks.
-Solution: Add query reformulation or prompt clarification UI.
-
-
+- **Advanced OCR**: Use Transformer-based OCR (e.g., TrOCR) for better Bangla recognition.
+- **Fine-Tuned Embeddings**: Train `LaBSE` or `indic-sbert` on Bangla-English corpora.
+- **Improved Cleaning**: Integrate Bangla spell checkers (`bnltk`, `bangla-stemmer`).
+- **Hybrid Retrieval**: Combine Pinecone with BM25 for semantic + keyword matching.
+- **Metadata Storage**: Store chunk metadata (page number, confidence) for debugging.
 
 ---
 
-### 🎯 Do the results seem relevant?
+## 👩‍💻 Author
 
-Overall, the retrieval and answer generation perform well, providing mostly relevant responses. However, there is room for improvement:
-
-- **Enhanced chunking strategies:**  
-  Refining chunking methods specifically tailored for Bangla-heavy documents can improve context coherence and retrieval accuracy.
-
-- **More specialized embedding models:**  
-  Using larger or domain-specific embedding models fine-tuned on Bangla language or the specific subject matter could boost semantic understanding.
-
-- **Improved OCR post-processing:**  
-  Since the source PDFs are scanned, advanced OCR error correction and text normalization can reduce noise and improve text quality before embedding.
-
-- **Query reformulation and prompt engineering:**  
-  Adding techniques to better interpret vague or ambiguous queries can further enhance relevance.
-
-- **Re-ranking with GPT or other models:**  
-  Applying a re-ranking step on retrieved chunks using GPT-based scoring can improve answer precision.
-
----
-
-## 📌 Future Improvements
-
-Here are potential future improvements based on current limitations and insights:
-
-- 🔍 **Advanced OCR Integration**
-  - Integrate Tesseract with improved preprocessing (denoising, binarization) or switch to a Transformer-based OCR model like [TrOCR](https://huggingface.co/microsoft/trocr-base-printed) for better Bangla text recognition.
-  - Add automatic page-wise OCR logging and correction for low-confidence regions.
-
-- 🌐 **Fine-Tuned Multilingual Embeddings**
-  - Fine-tune a multilingual model (e.g., `LaBSE`, `distiluse-base-multilingual-cased`) on Bangla-English corpora to enhance semantic similarity.
-  - Experiment with Hugging Face models like `ai4bharat/indic-sbert` for Bangla-specific retrieval.
-
-- 🧹 **Improved Text Cleaning**
-  - Enhance the `clean_bangla_text()` function with a more robust Bangla spell checker (e.g., `bnltk`, `bangla-stemmer`).
-  - Introduce language model-based error correction for misrecognized OCR characters.
-
-- 📚 **Hybrid Retrieval Setup**
-  - Combine dense vector retrieval (Pinecone) with sparse keyword-based retrieval (BM25 or Elasticsearch) to handle both semantic and lexical matching.
-
-- 🧩 **Chunk-Level Metadata Storage**
-  - Store metadata such as source page number, position, and confidence score for better debugging and user explanation.
-
----
-
-
-👩‍💻 Author
-
-Marzia Sultana
+- [ ] **Shakil Ahamed**\
+      Crafting innovative solutions with code and curiosity! 🚀
