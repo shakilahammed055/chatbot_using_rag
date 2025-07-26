@@ -65,7 +65,7 @@ PINECONE_API_KEY=your-pinecone-api-key
 5. **Run the App**
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn app.main:app
 ```
 
 🎉 You're ready to chat with the bot!
