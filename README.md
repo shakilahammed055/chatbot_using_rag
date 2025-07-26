@@ -36,8 +36,8 @@ Get started in just a few steps! Follow this guide to set up the project locally
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/marziasu/chatbot-rag-.git
-cd chatbot-rag-
+git clone https://github.com/shakilahammed055/chatbot_using_rag
+cd chatbot_using_rag
 ```
 
 2. **Create a Virtual Environment**
@@ -333,4 +333,4 @@ The system delivers relevant answers but has room for improvement:
 ## 👩‍💻 Author
 
 - [ ] **Shakil Ahamed**\
-      Crafting innovative solutions with code and curiosity! 🚀
+       Crafting innovative solutions with code and curiosity! 🚀
